@@ -25,7 +25,7 @@ router.get('/e/:slug', async (req, res) => {
     );
 
     // Check if user already submitted (cookie stores response ID)
-    const cookieName = `rateit_${ev.public_slug}`;
+    const cookieName = `pulsecheck_${ev.public_slug}`;
     const existingResponseId = req.cookies[cookieName];
     let existingRatings = {};
     let existingFeedback = '';
@@ -77,7 +77,7 @@ router.post('/e/:slug', async (req, res) => {
       [ev.id]
     );
 
-    const cookieName = `rateit_${ev.public_slug}`;
+    const cookieName = `pulsecheck_${ev.public_slug}`;
     const existingResponseId = req.cookies[cookieName];
 
     const client = await pool.connect();

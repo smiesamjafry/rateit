@@ -26,4 +26,4 @@ process.on('unhandledRejection', (err) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`RateIt running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Pulsecheck running on port ${PORT}`));

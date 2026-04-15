@@ -1,5 +1,5 @@
 {
-  "name": "rateit",
+  "name": "pulsecheck",
   "version": "1.0.0",
   "description": "Simple event feedback and star rating collection app",
   "main": "server.js",
