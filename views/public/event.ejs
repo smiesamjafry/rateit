@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+
+<article>
+  <hgroup>
+    <h1><%= event.title %></h1>
+    <% if (event.description) { %>
+      <p><%= event.description %></p>
+    <% } %>
+  </hgroup>
+
+  <form method="POST" action="/e/<%= event.public_slug %>">
+    <% questions.forEach(function(q) { %>
+      <fieldset>
+        <label><strong><%= q.text %></strong></label>
+        <div class="star-rating">
+          <input type="radio" id="q<%= q.id %>_5" name="rating_<%= q.id %>" value="5" required>
+          <label for="q<%= q.id %>_5" title="5 stars">&#9733;</label>
+          <input type="radio" id="q<%= q.id %>_4" name="rating_<%= q.id %>" value="4">
+          <label for="q<%= q.id %>_4" title="4 stars">&#9733;</label>
+          <input type="radio" id="q<%= q.id %>_3" name="rating_<%= q.id %>" value="3">
+          <label for="q<%= q.id %>_3" title="3 stars">&#9733;</label>
+          <input type="radio" id="q<%= q.id %>_2" name="rating_<%= q.id %>" value="2">
+          <label for="q<%= q.id %>_2" title="2 stars">&#9733;</label>
+          <input type="radio" id="q<%= q.id %>_1" name="rating_<%= q.id %>" value="1">
+          <label for="q<%= q.id %>_1" title="1 star">&#9733;</label>
+        </div>
+      </fieldset>
+    <% }) %>
+
+    <label for="feedback">Feedback <small>(optional)</small></label>
+    <textarea id="feedback" name="feedback" rows="4" placeholder="Any additional comments..."></textarea>
+
+    <button type="submit">Submit Rating</button>
+  </form>
+</article>
+
+<%- include('../partials/footer') %>

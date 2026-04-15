@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<article>
+  <h1>Create a New Event</h1>
+
+  <form method="POST" action="/admin/new">
+    <label for="title">Event Title</label>
+    <input type="text" id="title" name="title" placeholder="e.g. Team Workshop Q1" required>
+
+    <label for="description">Description <small>(optional)</small></label>
+    <textarea id="description" name="description" rows="3" placeholder="Brief description of the event..."></textarea>
+
+    <button type="submit">Create Event</button>
+  </form>
+</article>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,15 @@
+{
+  "name": "rateit",
+  "version": "1.0.0",
+  "description": "Simple event feedback and star rating collection app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "db:init": "node db/init.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
+  }
+}

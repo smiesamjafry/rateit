@@ -1,0 +1,97 @@
+/* Star Rating Component */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.15em;
+  padding: 0.5rem 0;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+.star-rating input:checked ~ label {
+  color: #f5a623;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #f5a623;
+}
+
+/* Results page stars */
+.stars-display {
+  display: inline-block;
+  margin-left: 0.3rem;
+}
+
+.star-filled {
+  color: #f5a623;
+}
+
+.star-empty {
+  color: #ccc;
+}
+
+/* Distribution bars */
+.distribution {
+  min-width: 180px;
+}
+
+.dist-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.15rem;
+  font-size: 0.8rem;
+}
+
+.dist-label {
+  width: 2rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.dist-bar-bg {
+  flex: 1;
+  height: 0.6rem;
+  background: #e9ecef;
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+.dist-bar {
+  height: 100%;
+  background: #f5a623;
+  border-radius: 0.3rem;
+  transition: width 0.3s;
+}
+
+.dist-count {
+  width: 1.5rem;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+/* Public link display */
+kbd {
+  display: block;
+  padding: 0.75rem;
+  word-break: break-all;
+  user-select: all;
+}
+
+/* Fieldset cleanup */
+fieldset {
+  border: none;
+  padding: 0.5rem 0;
+}

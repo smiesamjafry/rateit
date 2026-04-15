@@ -1,0 +1,67 @@
+<%- include('../partials/header') %>
+
+<article>
+  <hgroup>
+    <h1>Results: <%= event.title %></h1>
+    <p>Total responses: <strong><%= responseCount %></strong></p>
+  </hgroup>
+
+  <% if (stats.length === 0) { %>
+    <p><em>No questions have been added to this event yet.</em></p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Avg Rating</th>
+          <th>Responses</th>
+          <th>Distribution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% stats.forEach(function(s) { %>
+          <tr>
+            <td><%= s.text %></td>
+            <td>
+              <strong><%= s.avg_rating ? s.avg_rating : '-' %></strong>
+              <% if (s.avg_rating) { %>
+                <span class="stars-display">
+                  <% for (let i = 1; i <= 5; i++) { %>
+                    <span class="<%= i <= Math.round(s.avg_rating) ? 'star-filled' : 'star-empty' %>">&#9733;</span>
+                  <% } %>
+                </span>
+              <% } %>
+            </td>
+            <td><%= s.total_ratings %></td>
+            <td class="distribution">
+              <% for (let i = 5; i >= 1; i--) { %>
+                <div class="dist-row">
+                  <span class="dist-label"><%= i %>&#9733;</span>
+                  <div class="dist-bar-bg">
+                    <div class="dist-bar" style="width: <%= s.total_ratings > 0 ? (s['stars_' + i] / s.total_ratings * 100) : 0 %>%"></div>
+                  </div>
+                  <span class="dist-count"><%= s['stars_' + i] %></span>
+                </div>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <% if (feedbacks.length > 0) { %>
+    <hr>
+    <h3>Written Feedback</h3>
+    <% feedbacks.forEach(function(f) { %>
+      <blockquote>
+        <p><%= f.feedback %></p>
+        <footer><small><%= new Date(f.created_at).toLocaleDateString() %></small></footer>
+      </blockquote>
+    <% }) %>
+  <% } %>
+
+  <a href="/admin/<%= event.id %>?token=<%= token %>" role="button" class="outline">Back to Dashboard</a>
+</article>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,70 @@
+<%- include('../partials/header') %>
+
+<article>
+  <hgroup>
+    <h1><%= event.title %></h1>
+    <p>
+      Status: <strong><%= event.is_active ? 'Active' : 'Closed' %></strong>
+      &nbsp;|&nbsp;
+      Responses: <strong><%= responseCount %></strong>
+    </p>
+  </hgroup>
+
+  <section>
+    <h3>Public Link</h3>
+    <p>Share this link with your audience:</p>
+    <kbd id="public-link"><%= protocol %>://<%= host %>/e/<%= event.public_slug %></kbd>
+  </section>
+
+  <hr>
+
+  <section>
+    <h3>Questions</h3>
+    <% if (questions.length === 0) { %>
+      <p><em>No questions yet. Add your first question below.</em></p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Question</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% questions.forEach(function(q, i) { %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= q.text %></td>
+              <td>
+                <form method="POST" action="/admin/<%= event.id %>/questions/<%= q.id %>/delete?token=<%= token %>" style="margin:0">
+                  <button type="submit" class="outline secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <form method="POST" action="/admin/<%= event.id %>/questions?token=<%= token %>">
+      <fieldset role="group">
+        <input type="text" name="text" placeholder="Enter a question..." required>
+        <button type="submit">Add Question</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <hr>
+
+  <div class="grid">
+    <a href="/admin/<%= event.id %>/results?token=<%= token %>" role="button">View Results</a>
+    <form method="POST" action="/admin/<%= event.id %>/toggle?token=<%= token %>">
+      <button type="submit" class="<%= event.is_active ? 'secondary' : '' %>">
+        <%= event.is_active ? 'Close Event' : 'Reopen Event' %>
+      </button>
+    </form>
+  </div>
+</article>
+
+<%- include('../partials/footer') %>
